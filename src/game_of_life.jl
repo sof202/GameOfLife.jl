@@ -10,23 +10,6 @@ function setup_board(width::Int, height::Int)
     return board
 end
 
-function print_board(board::Matrix{Int})
-    character_board = map(
-        x -> if x == 1
-            ALIVE_CHAR
-        else
-            DEAD_CHAR
-        end, board
-    )
-    for row in 1:size(board)[1]
-        for col in 1:size(board)[2]
-            print(character_board[row, col])
-        end
-        print('\n')
-    end
-end
-
-
 function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
     row, col = cell.I
     top = max(1, row - 1)
