@@ -28,9 +28,9 @@ end
 function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
     row, col = cell.I
     top = max(1, row - 1)
-    bottom = min(row + 1, size(board)[2])
+    bottom = min(row + 1, size(board)[1])
     left = max(1, col - 1)
-    right = min(col + 1, size(board)[1])
+    right = min(col + 1, size(board)[2])
     surrounding_cells = board[top:bottom, left:right]
     return sum(surrounding_cells)
 end
