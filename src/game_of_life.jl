@@ -58,6 +58,7 @@ function plot_board(board)
         board,
         colorbar=false,
         labels=false,
+        colormap=:inferno,
     )
     display(board_plot)
 end
