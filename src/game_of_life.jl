@@ -38,16 +38,19 @@ end
 function update_cell(cell::CartesianIndex, board::Matrix{Int})
     surrounding_cells = get_number_of_neighbors(cell, board)
     if board[cell] == 1
-        board[cell] = surrounding_cells > 3 ? 0 :
-                      (surrounding_cells < 2 ? 0 : 1)
+        return surrounding_cells > 3 ? 0 :
+               (surrounding_cells < 2 ? 0 : 1)
     else
-        board[cell] = surrounding_cells == 3 ? 1 : 0
+        return surrounding_cells == 3 ? 1 : 0
     end
 end
 
 function update_board(board::Matrix{Int})
-    foreach(cell -> update_cell(cell, board), CartesianIndices(board))
-    return board
+    new_board = copy(board)
+    for cell in CartesianIndices(board)
+        new_board[cell] = update_cell(cell, board)
+    end
+    return new_board
 end
 
 function plot_board(board)
