@@ -2,9 +2,6 @@ module game_of_life
 
 using UnicodePlots
 
-ALIVE_CHAR = '#'
-DEAD_CHAR = '-'
-
 function setup_random_board(width::Int, height::Int)
     board = rand((0, 1), (height, width))
     return board
