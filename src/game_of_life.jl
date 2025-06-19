@@ -32,13 +32,12 @@ function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
     left = max(1, col - 1)
     right = min(col + 1, size(board)[2])
     surrounding_cells = board[top:bottom, left:right]
-    return sum(surrounding_cells)
+    return sum(surrounding_cells) - board[cell]
 end
 
 function update_cell(cell::CartesianIndex, board::Matrix{Int})
     surrounding_cells = get_number_of_neighbors(cell, board)
     if board[cell] == 1
-        surrounding_cells -= 1
         board[cell] = surrounding_cells > 3 ? 0 :
                       (surrounding_cells < 2 ? 0 : 1)
     else
