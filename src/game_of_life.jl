@@ -1,5 +1,7 @@
 module game_of_life
 
+using UnicodePlots
+
 ALIVE_CHAR = '#'
 DEAD_CHAR = '-'
 
@@ -49,12 +51,18 @@ function update_board(board::Matrix{Int})
     foreach(cell -> update_cell(cell, board), CartesianIndices(board))
 end
 
+function plot_board(board)
+    UnicodePlots.heatmap(
+        board,
+        colorbar=false,
+        labels=false,
+    )
+end
+
 function play_game(board)
     println("Game start")
-    while sum(board) != 0
-        update_board(board)
-        print_board(board)
-    end
+    update_board(board)
+    plot_board(board)
     println("Everyone is dead")
 end
 
