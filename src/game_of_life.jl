@@ -23,7 +23,7 @@ function create_glider(width::Int, height::Int)
     return board
 end
 
-function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
+function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Bool})
     rows, cols = size(board)
     row, col = cell.I
     count = 0
@@ -36,7 +36,7 @@ function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
     return count
 end
 
-function update_cell(cell::CartesianIndex, board::Matrix{Int})
+function update_cell(cell::CartesianIndex, board::Matrix{Bool})
     surrounding_cells = get_number_of_neighbors(cell, board)
     if board[cell] == 1
         return surrounding_cells > 3 ? 0 :
@@ -45,7 +45,7 @@ function update_cell(cell::CartesianIndex, board::Matrix{Int})
     return surrounding_cells == 3 ? 1 : 0
 end
 
-function update_board!(new_board::Matrix{Int}, board::Matrix{Int})
+function update_board!(new_board::Matrix{Bool}, board::Matrix{Bool})
     for cell in CartesianIndices(board)
         new_board[cell] = update_cell(cell, board)
     end
