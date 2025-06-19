@@ -50,4 +50,13 @@ function update_board(board::Matrix{Int})
     foreach(cell -> update_cell(cell, board), CartesianIndices(board))
 end
 
+function play_game(board)
+    println("Game start")
+    while sum(board) != 0
+        update_board(board)
+        print_board(board)
+    end
+    println("Everyone is dead")
+end
+
 end # module game_of_life
