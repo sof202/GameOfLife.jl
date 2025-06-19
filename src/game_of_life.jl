@@ -23,12 +23,16 @@ function create_glider(width::Int, height::Int)
 end
 
 function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
+    rows, cols = size(board)
     row, col = cell.I
-    top = max(1, row - 1)
-    bottom = min(row + 1, size(board)[1])
-    left = max(1, col - 1)
-    right = min(col + 1, size(board)[2])
-    return sum(@view board[top:bottom, left:right]) - board[cell]
+    count = 0
+    for i in -1:1, j in -1:1
+        (i == 0 && j == 0) && continue
+        r = mod1(row + i, rows)
+        c = mod1(col + j, cols)
+        count += board[r, c]
+    end
+    return count
 end
 
 function update_cell(cell::CartesianIndex, board::Matrix{Int})
