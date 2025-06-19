@@ -61,7 +61,7 @@ function update_board!(new_board::Matrix{Bool}, board::Matrix{Bool})
     return new_board
 end
 
-function plot_board(board, height, width)
+function plot_board(board, width, height)
     board_plot = UnicodePlots.heatmap(
         board,
         colorbar=false,
