@@ -26,13 +26,24 @@ end
 
 
 function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
-    i, j = cell.I
-    top = max(0, j)
-    bottom = min(j, size(board)[2])
-    left = max(0, i)
-    right = min(i, size(board)[1])
-    surrounding_cells = board(top:bottom, left:right)
+    j, i = cell.I
+    top = max(0, j - 1)
+    bottom = min(j + 1, size(board)[2])
+    left = max(0, i - 1)
+    right = min(i + 1, size(board)[1])
+    surrounding_cells = board[left:right, top:bottom]
     return sum(surrounding_cells)
+end
+
+function update_cell(cell::CartesianIndex, board::Matrix{Int})
+    surrounding_cells = get_number_of_neighbors(cell, board)
+    if board[cell] == 1
+        surrounding_cells -= 1
+        board[cell] = surrounding_cells > 3 ? 0 :
+                      (surrounding_cells < 2 ? 0 : 1)
+    else
+        board[cell] = surrounding_cells == 3 ? 1 : 0
+    end
 end
 
 end # module game_of_life
