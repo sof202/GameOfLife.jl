@@ -40,6 +40,15 @@ making servicable code.
     for example too, but what if you want to make a CLI tool? Don't use Julia
     I guess.
         - And herein lies the reason I won't really be using Julia all too much
+- When working in the repl, you need to use the `Revise` package in order to
+have a nice workflow (which is kinda annoying)
+    - Ideally, I'd write a function, test it, then go to the next. However,
+    in Julia, if you want to do this you would need to exit the REPL after
+    every change. This is because simply executing `using PackageName` won't
+    actually use the latest verison and instead just reload the already
+    built one (I'm assuming to save time?).
+    - At least the `Revise` package exists. But this is still a pretty big
+    inconvience
 
 
 ## Performance upgrades 
