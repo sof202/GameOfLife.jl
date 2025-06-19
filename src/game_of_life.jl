@@ -73,7 +73,6 @@ function play_game(board; max_steps=100)
         board = update_board(board)
         step += 1
     end
-    println("Everyone is dead")
 end
 
 end # module game_of_life
