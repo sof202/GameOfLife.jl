@@ -2,6 +2,10 @@ module game_of_life
 
 using UnicodePlots
 
+function clearScreen()
+    print("\033[2J\033[H")
+end
+
 function setup_random_board(width::Int, height::Int)
     board = rand((0, 1), (height, width))
     return board
@@ -64,8 +68,7 @@ function play_game(board; max_steps=100)
     step = 0
     try
         while sum(board) != 0 && step < max_steps
-            # Clear terminal and move cursor to top
-            print("\033[2J\033[H")
+            clearScreen()
             println("Step: ", step)
             plot_board(board)
             sleep(0.1)
@@ -73,8 +76,9 @@ function play_game(board; max_steps=100)
             step += 1
         end
     catch ex
-        isa(ex, InterruptException) && println("\nGame interupted\n")
+        isa(ex, InterruptException)
     end
+    clearScreen()
     println("Final iteration")
     plot_board(board)
 end
