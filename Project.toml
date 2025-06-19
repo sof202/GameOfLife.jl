@@ -1,0 +1,4 @@
+name = "game_of_life"
+uuid = "6dfc342f-5ad7-4a44-9d89-98a1de06532d"
+authors = ["sof202 <s.o.fletcher@exeter.ac.uk>"]
+version = "0.1.0"
