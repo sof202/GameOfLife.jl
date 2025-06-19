@@ -2,3 +2,9 @@ name = "game_of_life"
 uuid = "6dfc342f-5ad7-4a44-9d89-98a1de06532d"
 authors = ["sof202 <s.o.fletcher@exeter.ac.uk>"]
 version = "0.1.0"
+
+[deps]
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+
+[compat]
+Plots = "1.40.14"
