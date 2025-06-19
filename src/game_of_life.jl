@@ -1,5 +1,6 @@
 module game_of_life
 
+using UnicodePlots: height
 using UnicodePlots
 
 function clearScreen()
@@ -52,25 +53,28 @@ function update_board!(new_board::Matrix{Bool}, board::Matrix{Bool})
     return new_board
 end
 
-function plot_board(board)
+function plot_board(board, height, width)
     board_plot = UnicodePlots.heatmap(
         board,
         colorbar=false,
         labels=false,
         colormap=:inferno,
+        height=height,
+        width=width,
     )
     display(board_plot)
 end
 
-function play_game(board; max_steps=100)
+function play_game(board_generator; width=20, height=20, max_steps=100)
     println("Game start")
     step = 0
+    board = board_generator(width, height)
     copy_board = similar(board)
     try
         while sum(board) != 0 && step < max_steps
             clearScreen()
             println("Step: ", step)
-            plot_board(board)
+            plot_board(board, width, height)
             sleep(0.1)
             update_board!(copy_board, board)
             copy_board, board = board, copy_board
@@ -81,7 +85,7 @@ function play_game(board; max_steps=100)
     end
     clearScreen()
     println("Final iteration")
-    plot_board(board)
+    plot_board(board, width, height)
 end
 
 end # module game_of_life
