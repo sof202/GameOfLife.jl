@@ -74,6 +74,8 @@ function play_game(board; max_steps=100)
         board = update_board(board)
         step += 1
     end
+    println("Final iteration")
+    plot_board(board)
 end
 
 end # module game_of_life
