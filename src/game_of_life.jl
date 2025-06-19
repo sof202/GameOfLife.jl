@@ -33,8 +33,7 @@ function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
     bottom = min(row + 1, size(board)[1])
     left = max(1, col - 1)
     right = min(col + 1, size(board)[2])
-    surrounding_cells = board[top:bottom, left:right]
-    return sum(surrounding_cells) - board[cell]
+    return sum(@view board[top:bottom, left:right]) - board[cell]
 end
 
 function update_cell(cell::CartesianIndex, board::Matrix{Int})
