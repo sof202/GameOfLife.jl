@@ -4,7 +4,9 @@ Never made anything is julia before, this is part of the
 [CFRR course](https://coding-for-reproducible-research.github.io/CfRR_Courses/course_homepages/julia.html).
 I didn't attend the actual workshop so I'm just doing it alone. There's likely
 going to be a lot of problems with the way I'm setting my project up, but I at
-least followed a guide online for this.
+least followed 
+[a guide online](https://www.matecdev.com/posts/julia-create-project.html)
+for this.
 
 ## Things I like about julia
 
