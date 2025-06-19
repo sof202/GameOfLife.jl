@@ -77,7 +77,7 @@ function play_game(board; max_steps=100)
             step += 1
         end
     catch ex
-        isa(ex, InterruptException)
+        isa(ex, InterruptException) || rethrow()
     end
     clearScreen()
     println("Final iteration")
