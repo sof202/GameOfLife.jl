@@ -49,20 +49,30 @@ end
 
 function update_board(board::Matrix{Int})
     foreach(cell -> update_cell(cell, board), CartesianIndices(board))
+    return board
 end
 
 function plot_board(board)
-    UnicodePlots.heatmap(
+    board_plot = UnicodePlots.heatmap(
         board,
         colorbar=false,
         labels=false,
     )
+    display(board_plot)
 end
 
-function play_game(board)
+function play_game(board; max_steps=100)
     println("Game start")
-    update_board(board)
-    plot_board(board)
+    step = 0
+    while sum(board) != 0 && step < max_steps
+        # Clear terminal and move cursor to top
+        print("\033[2J\033[H")
+        println("Step: ", step)
+        plot_board(board)
+        sleep(0.1)
+        board = update_board(board)
+        step += 1
+    end
     println("Everyone is dead")
 end
 
