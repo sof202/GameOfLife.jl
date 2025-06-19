@@ -7,6 +7,14 @@ function clearScreen()
     print("\033[2J\033[H")
 end
 
+function saveCursorPosition()
+    print("\033[s")
+end
+
+function restoreCursorToSavedPosition()
+    print("\033[u")
+end
+
 function setup_random_board(width::Int, height::Int)
     board = rand(Bool, (height, width))
     return board
@@ -71,9 +79,9 @@ function play_game(board_generator; width=20, height=20, max_steps=100)
     board = board_generator(width, height)
     copy_board = similar(board)
     try
+        saveCursorPosition()
         while sum(board) != 0 && step < max_steps
-            clearScreen()
-            println("Step: ", step)
+            restoreCursorToSavedPosition()
             plot_board(board, width, height)
             sleep(0.1)
             update_board!(copy_board, board)
