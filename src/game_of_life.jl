@@ -40,9 +40,8 @@ function update_cell(cell::CartesianIndex, board::Matrix{Int})
     if board[cell] == 1
         return surrounding_cells > 3 ? 0 :
                (surrounding_cells < 2 ? 0 : 1)
-    else
-        return surrounding_cells == 3 ? 1 : 0
     end
+    return surrounding_cells == 3 ? 1 : 0
 end
 
 function update_board(board::Matrix{Int})
