@@ -10,6 +10,18 @@ function setup_random_board(width::Int, height::Int)
     return board
 end
 
+function create_glider(width::Int, height::Int)
+    if width < 3 || height < 3
+        println("Board must be larger than 3x3")
+        return
+    end
+    board = zeros(Int, width, height)
+    board[1, 1] = 1
+    board[2, 2:3] .= 1
+    board[3, 1:2] .= 1
+    return board
+end
+
 function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
     row, col = cell.I
     top = max(1, row - 1)
