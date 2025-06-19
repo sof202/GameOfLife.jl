@@ -41,3 +41,18 @@ making servicable code.
     I guess.
         - And herein lies the reason I won't really be using Julia all too much
 
+
+## Performance upgrades 
+
+I didn't really think of these myself but implemented them anyways:
+
+- Using a smaller type instead of `Int` (`Bool`)
+- Creating two boards, one for holding the previous state and one for holding
+the current state
+    - At each iteration, the previous board is updated to the next state and
+    the boards are switched.
+    - This means that the board updating doesn't require any copies to be made
+    - This is an actually good optimisation that is generalisable to other
+    projects where some object needs to be updated through time (but can't be
+    updated in place)
+
