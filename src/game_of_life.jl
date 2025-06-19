@@ -24,4 +24,15 @@ function print_board(board::Matrix{Int})
     end
 end
 
+
+function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Int})
+    i, j = cell.I
+    top = max(0, j)
+    bottom = min(j, size(board)[2])
+    left = max(0, i)
+    right = min(i, size(board)[1])
+    surrounding_cells = board(top:bottom, left:right)
+    return sum(surrounding_cells)
+end
+
 end # module game_of_life
