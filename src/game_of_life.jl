@@ -78,6 +78,7 @@ function play_game(board_generator; width=20, height=20, max_steps=100)
     step = 0
     board = board_generator(width, height)
     copy_board = similar(board)
+    clearScreen()
     try
         saveCursorPosition()
         while sum(board) != 0 && step < max_steps
