@@ -74,7 +74,6 @@ function plot_board(board, width, height)
 end
 
 function play_game(board_generator; width=20, height=20, max_steps=100)
-    println("Game start")
     step = 0
     board = board_generator(width, height)
     copy_board = similar(board)
