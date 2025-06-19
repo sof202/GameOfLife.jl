@@ -65,14 +65,18 @@ end
 function play_game(board; max_steps=100)
     println("Game start")
     step = 0
-    while sum(board) != 0 && step < max_steps
-        # Clear terminal and move cursor to top
-        print("\033[2J\033[H")
-        println("Step: ", step)
-        plot_board(board)
-        sleep(0.1)
-        board = update_board(board)
-        step += 1
+    try
+        while sum(board) != 0 && step < max_steps
+            # Clear terminal and move cursor to top
+            print("\033[2J\033[H")
+            println("Step: ", step)
+            plot_board(board)
+            sleep(0.1)
+            board = update_board(board)
+            step += 1
+        end
+    catch ex
+        isa(ex, InterruptException) && println("\nGame interupted\n")
     end
     println("Final iteration")
     plot_board(board)
