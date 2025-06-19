@@ -5,7 +5,7 @@ using UnicodePlots
 ALIVE_CHAR = '#'
 DEAD_CHAR = '-'
 
-function setup_board(width::Int, height::Int)
+function setup_random_board(width::Int, height::Int)
     board = rand((0, 1), (height, width))
     return board
 end
