@@ -7,7 +7,7 @@ function clearScreen()
 end
 
 function setup_random_board(width::Int, height::Int)
-    board = rand((0, 1), (height, width))
+    board = rand(Bool, (height, width))
     return board
 end
 
@@ -16,7 +16,7 @@ function create_glider(width::Int, height::Int)
         println("Board must be larger than 3x3")
         return
     end
-    board = zeros(Int, width, height)
+    board = zeros(Bool, width, height)
     board[1, 1] = 1
     board[2, 2:3] .= 1
     board[3, 1:2] .= 1
