@@ -45,8 +45,7 @@ function update_cell(cell::CartesianIndex, board::Matrix{Int})
     return surrounding_cells == 3 ? 1 : 0
 end
 
-function update_board(board::Matrix{Int})
-    new_board = copy(board)
+function update_board!(new_board::Matrix{Int}, board::Matrix{Int})
     for cell in CartesianIndices(board)
         new_board[cell] = update_cell(cell, board)
     end
@@ -66,13 +65,15 @@ end
 function play_game(board; max_steps=100)
     println("Game start")
     step = 0
+    copy_board = similar(board)
     try
         while sum(board) != 0 && step < max_steps
             clearScreen()
             println("Step: ", step)
             plot_board(board)
             sleep(0.1)
-            board = update_board(board)
+            update_board!(copy_board, board)
+            copy_board, board = board, copy_board
             step += 1
         end
     catch ex
