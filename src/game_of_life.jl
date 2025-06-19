@@ -46,4 +46,8 @@ function update_cell(cell::CartesianIndex, board::Matrix{Int})
     end
 end
 
+function update_board(board::Matrix{Int})
+    foreach(cell -> update_cell(cell, board), CartesianIndices(board))
+end
+
 end # module game_of_life
