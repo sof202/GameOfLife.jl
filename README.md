@@ -4,6 +4,29 @@ This is an implementation of
 [Conway's game of life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life) in
 julia.
 
+## Running
+
+This isn't an official julia package and so isn't available via `Pkg`. Instead
+to run you need to do the following:
+
+```bash
+git clone https://github.com/sof202/GameOfLife.jl.git GameOfLife
+cd GameOfLife
+julia --project=.
+```
+
+Then within the julia REPL:
+
+```julia-repl
+julia> using GameOfLife
+```
+
+From here, one can make a simple random simulation via:
+
+```julia-repl
+julia> play_game(setup_random_board)
+```
+
 ## Documentation
 
 To build the documentation:
