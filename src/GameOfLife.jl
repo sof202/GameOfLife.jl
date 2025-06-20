@@ -20,7 +20,8 @@ function restore_cursor_to_saved_position()
     print("\033[u")
 end
 
-function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Integer})
+function get_number_of_neighbors(
+    cell::CartesianIndex, board::AbstractMatrix{<:Integer})
     rows, cols = size(board)
     row, col = cell.I
     count = 0
@@ -33,7 +34,7 @@ function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Integer})
     return count
 end
 
-function update_cell(cell::CartesianIndex, board::Matrix{Integer})
+function update_cell(cell::CartesianIndex, board::AbstractMatrix{<:Integer})
     surrounding_cells = get_number_of_neighbors(cell, board)
     if board[cell] == 1
         return surrounding_cells > 3 ? 0 :
@@ -42,14 +43,16 @@ function update_cell(cell::CartesianIndex, board::Matrix{Integer})
     return surrounding_cells == 3 ? 1 : 0
 end
 
-function update_board!(new_board::Matrix{Integer}, board::Matrix{Integer})
+function update_board!(
+    new_board::AbstractMatrix{<:Integer}, board::AbstractMatrix{<:Integer})
     for cell in CartesianIndices(board)
         new_board[cell] = update_cell(cell, board)
     end
     return new_board
 end
 
-function plot_board(board::Matrix{Integer}, width::Integer, height::Integer)
+function plot_board(
+    board::AbstractMatrix{<:Integer}, width::Integer, height::Integer)
     board_plot = UnicodePlots.heatmap(
         board,
         colorbar=false,
@@ -138,8 +141,8 @@ point). SIGINT (CTRL+C) can be sent to terminate the simulation early.
 # Arguments
 
 - board_generator : A function that accepts a width::Integer and a
-    height::Integer and returns a Integer Matrix (Matrix{Integer}) representing 
-    the initial configuration of the game state.
+    height::Integer and returns a Integer Matrix (AbstractMatrix{<:Integer})
+    representing the initial configuration of the game state.
     - A malformed function will throw an assertion error
 
 # Examples
@@ -171,8 +174,8 @@ function play_game(board_generator::Function;
     width::Integer=20, height::Integer=20, max_steps::Integer=100)
     step = 0
     current_board = board_generator(width, height)
-    @assert isa(current_board, Matrix{Integer}) (
-        "board_generator must return a Matrix{Integer}")
+    @assert isa(current_board, AbstractMatrix{<:Integer}) (
+        "board_generator must return a AbstractMatrix{<:Integer}")
     previous_board = similar(current_board)
     clear_screen()
     try
