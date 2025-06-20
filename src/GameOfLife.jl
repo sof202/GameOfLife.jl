@@ -20,7 +20,7 @@ function restore_cursor_to_saved_position()
     print("\033[u")
 end
 
-function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Bool})
+function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Integer})
     rows, cols = size(board)
     row, col = cell.I
     count = 0
@@ -33,7 +33,7 @@ function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Bool})
     return count
 end
 
-function update_cell(cell::CartesianIndex, board::Matrix{Bool})
+function update_cell(cell::CartesianIndex, board::Matrix{Integer})
     surrounding_cells = get_number_of_neighbors(cell, board)
     if board[cell] == 1
         return surrounding_cells > 3 ? 0 :
@@ -42,14 +42,14 @@ function update_cell(cell::CartesianIndex, board::Matrix{Bool})
     return surrounding_cells == 3 ? 1 : 0
 end
 
-function update_board!(new_board::Matrix{Bool}, board::Matrix{Bool})
+function update_board!(new_board::Matrix{Integer}, board::Matrix{Integer})
     for cell in CartesianIndices(board)
         new_board[cell] = update_cell(cell, board)
     end
     return new_board
 end
 
-function plot_board(board::Matrix{Bool}, width::Int, height::Int)
+function plot_board(board::Matrix{Integer}, width::Integer, height::Integer)
     board_plot = UnicodePlots.heatmap(
         board,
         colorbar=false,
@@ -85,7 +85,7 @@ julia> setup_random_board(5,5)
 
 [`play_game`](@ref)
 """
-function setup_random_board(width::Int, height::Int)
+function setup_random_board(width::Integer, height::Integer)
     board = rand(Bool, (height, width))
     return board
 end
@@ -114,7 +114,7 @@ julia> create_glider(5,5)
 
 [`play_game`](@ref)
 """
-function create_glider(width::Int, height::Int)
+function create_glider(width::Integer, height::Integer)
     if width < 3 || height < 3
         println("Board must be larger than 3x3")
         return
@@ -137,9 +137,9 @@ point). SIGINT (CTRL+C) can be sent to terminate the simulation early.
 
 # Arguments
 
-- board_generator : A function that accepts a width::Int and a height::Int and
-    returns a Boolean Matrix (Matrix{Bool}) representing the initial
-    configuration of the game state.
+- board_generator : A function that accepts a width::Integer and a
+    height::Integer and returns a Integer Matrix (Matrix{Integer}) representing 
+    the initial configuration of the game state.
     - A malformed function will throw an assertion error
 
 # Examples
@@ -168,11 +168,11 @@ Final iteration
 `setup_random_board`, `create_glider`
 """
 function play_game(board_generator::Function;
-    width::Int=20, height::Int=20, max_steps::Int=100)
+    width::Integer=20, height::Integer=20, max_steps::Integer=100)
     step = 0
     current_board = board_generator(width, height)
-    @assert isa(current_board, Matrix{Bool}) (
-        "board_generator must return a Matrix{Bool}")
+    @assert isa(current_board, Matrix{Integer}) (
+        "board_generator must return a Matrix{Integer}")
     previous_board = similar(current_board)
     clear_screen()
     try
