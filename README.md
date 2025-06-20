@@ -1,4 +1,10 @@
-# Conways game of life in Julia
+# GameOfLife
+
+This is an implementation of 
+[Conway's game of life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life) in
+julia.
+
+## Disclaimer
 
 Never made anything is julia before, this is part of the 
 [CFRR course](https://coding-for-reproducible-research.github.io/CfRR_Courses/course_homepages/julia.html).
