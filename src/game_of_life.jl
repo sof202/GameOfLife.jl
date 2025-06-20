@@ -77,6 +77,7 @@ function play_game(board_generator::Function;
     width::Int=20, height::Int=20, max_steps::Int=100)
     step = 0
     board = board_generator(width, height)
+    @assert isa(board, Matrix{Bool}) "board_generator must return Matrix{Bool}"
     copy_board = similar(board)
     clearScreen()
     try
