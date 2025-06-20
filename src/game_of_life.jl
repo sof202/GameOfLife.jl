@@ -61,7 +61,7 @@ function update_board!(new_board::Matrix{Bool}, board::Matrix{Bool})
     return new_board
 end
 
-function plot_board(board, width, height)
+function plot_board(board::Matrix{Bool}, width::Int, height::Int)
     board_plot = UnicodePlots.heatmap(
         board,
         colorbar=false,
@@ -73,7 +73,8 @@ function plot_board(board, width, height)
     display(board_plot)
 end
 
-function play_game(board_generator; width=20, height=20, max_steps=100)
+function play_game(board_generator::Function;
+    width::Int=20, height::Int=20, max_steps::Int=100)
     step = 0
     board = board_generator(width, height)
     copy_board = similar(board)
