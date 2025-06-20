@@ -76,18 +76,18 @@ end
 function play_game(board_generator::Function;
     width::Int=20, height::Int=20, max_steps::Int=100)
     step = 0
-    board = board_generator(width, height)
-    @assert isa(board, Matrix{Bool}) "board_generator must return Matrix{Bool}"
-    copy_board = similar(board)
+    current_board = board_generator(width, height)
+    @assert isa(current_board, Matrix{Bool}) "board_generator must return Matrix{Bool}"
+    previous_board = similar(current_board)
     clearScreen()
     try
         saveCursorPosition()
-        while sum(board) != 0 && step < max_steps
+        while sum(current_board) != 0 && step < max_steps
             restoreCursorToSavedPosition()
-            plot_board(board, width, height)
+            plot_board(current_board, width, height)
             sleep(0.1)
-            update_board!(copy_board, board)
-            copy_board, board = board, copy_board
+            update_board!(previous_board, current_board)
+            previous_board, current_board = current_board, previous_board
             step += 1
         end
     catch ex
@@ -95,7 +95,7 @@ function play_game(board_generator::Function;
     end
     clearScreen()
     println("Final iteration")
-    plot_board(board, width, height)
+    plot_board(current_board, width, height)
 end
 
 export play_game
