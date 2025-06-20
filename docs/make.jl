@@ -1,7 +1,7 @@
-using Documenter, game_of_life
+using Documenter, GameOfLife
 
 makedocs(
-    sitename="game_of_life.jl",
+    sitename="GameOfLife.jl",
     pages=[
         "Overview" => "index.md",
         "Tutorial" => "tutorial.md",

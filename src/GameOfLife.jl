@@ -1,5 +1,5 @@
 "Project module that implements Conway's 'game of life' cellular automaton"
-module game_of_life
+module GameOfLife
 
 using UnicodePlots: height
 using UnicodePlots
@@ -193,4 +193,4 @@ function play_game(board_generator::Function;
     plot_board(current_board, width, height)
 end
 
-end # module game_of_life
+end # module GameOfLife

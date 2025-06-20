@@ -1,4 +1,4 @@
-# Documentation for game_of_life.jl 
+# GameOfLife.jl 
 
 Conway's game of life is a cellular automaton created by John Conway. It is 
 a 2 dimensional cellular automaton with the following rules:
@@ -18,6 +18,6 @@ a 2 dimensional cellular automaton with the following rules:
 This project imports:
 
 ```@docs
-game_of_life
+GameOfLife
 ```
 
