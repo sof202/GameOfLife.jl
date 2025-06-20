@@ -165,7 +165,7 @@ Final iteration
 
 # See also
 
-[`setup_random_board`](@ref), [`create_glider`](@ref)
+`setup_random_board`, `create_glider`
 """
 function play_game(board_generator::Function;
     width::Int=20, height::Int=20, max_steps::Int=100)
