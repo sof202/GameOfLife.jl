@@ -3,6 +3,10 @@ module game_of_life
 using UnicodePlots: height
 using UnicodePlots
 
+export play_game,
+    setup_random_board,
+    create_glider
+
 function clearScreen()
     print("\033[2J\033[H")
 end
@@ -98,9 +102,5 @@ function play_game(board_generator::Function;
     println("Final iteration")
     plot_board(current_board, width, height)
 end
-
-export play_game
-export setup_random_board
-export create_glider
 
 end # module game_of_life
