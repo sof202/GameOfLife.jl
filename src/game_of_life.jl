@@ -15,23 +15,6 @@ function restoreCursorToSavedPosition()
     print("\033[u")
 end
 
-function setup_random_board(width::Int, height::Int)
-    board = rand(Bool, (height, width))
-    return board
-end
-
-function create_glider(width::Int, height::Int)
-    if width < 3 || height < 3
-        println("Board must be larger than 3x3")
-        return
-    end
-    board = zeros(Bool, width, height)
-    board[1, 1] = 1
-    board[2, 2:3] .= 1
-    board[3, 1:2] .= 1
-    return board
-end
-
 function get_number_of_neighbors(cell::CartesianIndex, board::Matrix{Bool})
     rows, cols = size(board)
     row, col = cell.I
@@ -71,6 +54,23 @@ function plot_board(board::Matrix{Bool}, width::Int, height::Int)
         width=width,
     )
     display(board_plot)
+end
+
+function setup_random_board(width::Int, height::Int)
+    board = rand(Bool, (height, width))
+    return board
+end
+
+function create_glider(width::Int, height::Int)
+    if width < 3 || height < 3
+        println("Board must be larger than 3x3")
+        return
+    end
+    board = zeros(Bool, width, height)
+    board[1, 1] = 1
+    board[2, 2:3] .= 1
+    board[3, 1:2] .= 1
+    return board
 end
 
 function play_game(board_generator::Function;
