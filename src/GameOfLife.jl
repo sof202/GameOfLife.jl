@@ -8,15 +8,15 @@ export play_game,
     setup_random_board,
     create_glider
 
-function clearScreen()
+function clear_screen()
     print("\033[2J\033[H")
 end
 
-function saveCursorPosition()
+function save_cursor_position()
     print("\033[s")
 end
 
-function restoreCursorToSavedPosition()
+function restore_cursor_to_saved_position()
     print("\033[u")
 end
 
@@ -174,11 +174,11 @@ function play_game(board_generator::Function;
     @assert isa(current_board, Matrix{Bool}) (
         "board_generator must return a Matrix{Bool}")
     previous_board = similar(current_board)
-    clearScreen()
+    clear_screen()
     try
-        saveCursorPosition()
+        save_cursor_position()
         while sum(current_board) != 0 && step < max_steps
-            restoreCursorToSavedPosition()
+            restore_cursor_to_saved_position()
             plot_board(current_board, width, height)
             sleep(0.1)
             update_board!(previous_board, current_board)
@@ -188,7 +188,7 @@ function play_game(board_generator::Function;
     catch ex
         isa(ex, InterruptException) || rethrow()
     end
-    clearScreen()
+    clear_screen()
     println("Final iteration")
     plot_board(current_board, width, height)
 end
