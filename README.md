@@ -4,6 +4,25 @@ This is an implementation of
 [Conway's game of life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life) in
 julia.
 
+## Documentation
+
+To build the documentation:
+
+```bash
+cd .../GameOfLife/
+julia --project=. docs/make.jl/
+```
+
+To view the documentation you will need to run a http server on `docs/build`:
+
+```bash
+# Using Node.js
+npx http-server docs/build -p 8000
+
+# Using python
+python3 -m http.server 8000
+```
+
 ## Disclaimer
 
 Never made anything is julia before, this is part of the 
