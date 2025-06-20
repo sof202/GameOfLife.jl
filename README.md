@@ -46,6 +46,9 @@ npx http-server docs/build -p 8000
 python3 -m http.server 8000
 ```
 
+Alternatively, if you only care about a specific page (likely the tutorial
+page), you can open one of the generated `.html` files present in `docs/build`.
+
 ## Disclaimer
 
 Never made anything is julia before, this is part of the 
