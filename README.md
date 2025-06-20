@@ -103,6 +103,12 @@ have a nice workflow (which is kinda annoying)
     built one (I'm assuming to save time?).
     - At least the `Revise` package exists. But this is still a pretty big
     inconvience
+- The best practice around making functions as general as possible is quite
+annoying. I get it, but hitting speedbumps like `(Matrix{Bool} <:
+Matrix{Integer}) === false` is rather annoying. Again, I get why this is not
+a subtype (considering how the matrix is being stored at a lower level), but
+it's not very intuitive.
+    - I'm likely just bitter
 
 
 ## Performance upgrades 
