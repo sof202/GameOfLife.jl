@@ -19,6 +19,9 @@ for this.
 - The syntax is pretty nice, similar to lua in a lot of ways
 - I appreciate the package management with its caching and such, breath of
 fresh air compared to R
+- The testing and documentation building was pretty simple. The docs requiring
+a http server (instead of just opening the `.html` files) is a bit of a pain,
+but I guess it is preferrable.
 
 ## Thinks I do not like about julia
 
