@@ -96,4 +96,8 @@ function play_game(board_generator; width=20, height=20, max_steps=100)
     plot_board(board, width, height)
 end
 
+export play_game
+export setup_random_board
+export create_glider
+
 end # module game_of_life
